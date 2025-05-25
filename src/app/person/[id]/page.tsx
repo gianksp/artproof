@@ -96,7 +96,9 @@ export default function PersonPage({ params }: { params: Promise<{ id: string }>
     localStorage.setItem(`chat_${profile?.id}`, JSON.stringify(newMessages));
     setMessageInput("");
   };
-
+  console.log("-----")
+  console.log(profile)
+  console.log(id)
   return (
     <main className="min-h-screen bg-gray-100">
       {/* Hero Section */}
@@ -111,7 +113,7 @@ export default function PersonPage({ params }: { params: Promise<{ id: string }>
           <h1 className="text-4xl font-bold mb-2">{profile?.metadata?.name}</h1>
           <p className="text-lg text-gray-200">{profile?.metadata?.role}</p>
           <p className="text-xs text-gray-400">ID: {id}</p>
-          {profile?.id !== account?.address && <button
+          {parseInt(localStorage.getItem('profileNft') || 10000) !== parseInt(id) && <button
             onClick={() => setShowChat(true)}
             className="mt-4 px-4 py-2 bg-brand-olive text-white rounded hover:bg-brand-yellow transition"
           >

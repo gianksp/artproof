@@ -10,6 +10,8 @@ import { client } from "@/app/client";
 import { upload } from "thirdweb/storage";
 
 import NotificationPopup from "@/app/components/NotificationPopup";
+import { useDispatch } from "react-redux";
+import { fetchUserNFTs } from "@/app/store/productions";
 
 
 export default function ClaimParticipation({ params }: { params: { id: string } }) {
@@ -51,6 +53,8 @@ export default function ClaimParticipation({ params }: { params: { id: string } 
 
         try {
            
+            console.log(localStorage.getItem("profileNft"));
+            // return
             // Mint NFT
             const transaction = mintTo({
                 contract,
@@ -65,8 +69,8 @@ export default function ClaimParticipation({ params }: { params: { id: string } 
                             value: params.id,
                         },
                                                 {
-                            trait_type: "participantAddress",
-                            value: account.address,
+                            trait_type: "User",
+                            value: localStorage.getItem("profileNft")//account.address,
                         },
                         {
                             trait_type: "Role",
@@ -84,9 +88,11 @@ export default function ClaimParticipation({ params }: { params: { id: string } 
                 message: "NFT minted successfully!",
                 link: `https://testnet.snowtrace.io/tx/${transaction.hash}`,
             });
+            const dispatch = useDispatch();
+            dispatch(fetchUserNFTs())
             setTimeout(() => {
                 router.push("/");
-            }, 2000)
+            }, 3000)
         } catch (err) {
             console.error("Minting failed:", err);
             setPopup({

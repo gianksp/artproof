@@ -12,8 +12,6 @@ import { getImage, getProductions, getProfiles } from "@/app/utils";
 import { getNFT } from "thirdweb/extensions/erc721";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store/store";
-import router from "next/router";
-
 export default function EventPage({ params }: { params: { id: string } }) {
     //   const event = events.find((e) => e.id.toString() === params.id);
     //   if (!event) return <div className="p-8">Event not found.</div>;
@@ -25,7 +23,7 @@ export default function EventPage({ params }: { params: { id: string } }) {
     //     client,
     // });
 
-    // const router = useRouter();
+    const router = useRouter();
 
 
 
@@ -57,30 +55,34 @@ export default function EventPage({ params }: { params: { id: string } }) {
     return (
         <main className="min-h-screen bg-gray-100">
             {/* Hero Banner */}
-            <section className="relative w-full h-[50vh] overflow-hidden">
-                <img
-                    src={getImage(event?.metadata?.image)}
-                    alt={event?.metadata?.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-                <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-                    <h1 className="text-4xl sm:text-5xl font-bold mb-3">{event?.metadata?.title}</h1>
-                    <p className="text-sm sm:text-base text-gray-200">
-                        {event?.metadata?.attributes && new Date(event?.metadata?.attributes[0].value).toLocaleDateString(undefined, {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                        })}
-                    </p>
-                    <button
-                        onClick={handleClaim}
-                        className="px-5 py-2 mt-4 text-sm font-medium rounded-lg bg-brand-olive text-white hover:bg-brand-yellow transition"
-                    >
-                        Claim Participation
-                    </button>
-                </div>
-            </section>
+   <section className="relative w-full h-[50vh] overflow-hidden flex items-center justify-center">
+  <img
+    src={getImage(event?.metadata?.image)}
+    alt={event?.metadata?.name}
+    className="absolute inset-0 w-full h-full object-cover"
+  />
+  <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+  
+  <div className="relative z-10 text-center text-white px-4 max-w-2xl">
+    <h1 className="text-4xl sm:text-5xl font-bold mb-3">
+      {event?.metadata?.name}
+    </h1>
+    <p className="text-sm sm:text-base text-gray-200 mb-4">
+      {event?.metadata?.attributes && new Date(event?.metadata?.attributes[0].value).toLocaleDateString(undefined, {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })}
+    </p>
+    <button
+      onClick={handleClaim}
+      className="px-6 py-2 text-sm font-medium rounded-lg bg-brand-olive text-white hover:bg-brand-yellow transition"
+    >
+      Claim Participation
+    </button>
+  </div>
+</section>
+
 
             {/* Details Section */}
             <section className="max-w-5xl mx-auto px-4 sm:px-8 py-12">

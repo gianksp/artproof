@@ -39,10 +39,10 @@ export const HeroSection = () => {
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="text-center px-6 max-w-3xl">
           <h1 className="text-5xl sm:text-6xl font-heading font-bold text-white drop-shadow-md mb-6 leading-tight">
-            Create. Collaborate. <br/>Be Discovered.
+            KNOW THE NAME <br/>BEHIND THE CRAFT
           </h1>
-          <p className="text-lg sm:text-xl text-gray-200 font-light drop-shadow-sm mb-8">
-            Discover powerful collaborations and rising stars. Artproof brings together creators, producers, and fans across genres and geographies.
+          <p className="text-xl sm:text-2xl text-gray-200 font-light drop-shadow-sm mb-8">
+            Verified Credits, Direct Connections, No Middlemen.
           </p>
           <a
             href="#explore"

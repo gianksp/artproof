@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { getNFTs, balanceOf, getOwnedNFTs } from "thirdweb/extensions/erc721";
 import { getContract } from "thirdweb";
 import { useEffect, useState } from "react";
+import { profile } from "node:console";
 
 export const AuthButton = () => {
     const account = useActiveAccount();
@@ -27,10 +28,10 @@ export const AuthButton = () => {
         console.log(result)
         if (result.length > 0) {
             setProfileNft(result[0]);
-            // localStorage.setItem("profileNft", JSON.stringify(result[0]));
+            localStorage.setItem("profileNft", result[0].id.toString());
         } else {
             setProfileNft(null);
-            // localStorage.removeItem("profileNft");
+            localStorage.removeItem("profileNft");
         }
     }
 
@@ -41,6 +42,7 @@ export const AuthButton = () => {
     }, [account?.address])
 
     const router = useRouter();
+    console.log(profileNft)
     return (
         <ConnectButton client={client}
             chain={avalancheFuji}

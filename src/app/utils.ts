@@ -58,7 +58,7 @@ export const getRole = (participations, uid, eventId) => {
     }, {});
 
     return (
-      parseInt(attrMap["participantAddress"]?.toLowerCase()) === parseInt(uid) &&
+      parseInt(attrMap["User"]?.toLowerCase()) === parseInt(uid) &&
       parseInt(attrMap["Event"]) === parseInt(eventId)
     );
   });

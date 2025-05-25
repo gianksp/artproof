@@ -3,8 +3,9 @@ import Link from "next/link";
 import { getImage, getReleaseDate } from "../utils";
 
 export function EventCard({ event }: { event: any }) {
-  return (
-    <Link href={`/event/${event.id}`} className="block group">
+  
+  
+  const card =   event?.metadata?.image ? (<Link href={`/event/${event.id}`} className="block group">
       <div className="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-xl transition duration-300 ease-in-out">
         <div className="relative">
           <img
@@ -28,6 +29,6 @@ export function EventCard({ event }: { event: any }) {
           <p className="text-sm text-gray-600 line-clamp-3">{event?.metadata?.description}</p>
         </div>
       </div>
-    </Link>
-  );
+    </Link>) : (<></>);
+  return card;
 }
